@@ -1,6 +1,6 @@
 # GStack Generic
 
-A curated methodology-only adaptation of Garry Tan's gstack for local development. Version 1.2.2 contains 27 distinct methods and one coordinator, consolidated from the previous 60 skills. Methods define inputs, decisions, evidence, results, and scope; they do not prescribe tools or executable commands.
+A curated methodology-only adaptation of Garry Tan's gstack for local development. Version 1.2.3 contains 27 distinct methods and one coordinator, consolidated from the previous 60 skills. Methods define inputs, decisions, evidence, results, and scope; they do not prescribe tools or executable commands.
 
 The installed bundle lives in `plugins/gstack-power-team`. The authoring catalog, upstream tracking, selection rationale, and maintenance utilities live outside that bundle.
 
@@ -17,7 +17,7 @@ codex plugin marketplace add pablopoo/codex-marketplace
 codex plugin add gstack-power-team@pablopoo-plugins
 ```
 
-Adding a marketplace makes plugins discoverable; it does not install them. Start a new task after installation to load the skills. The central catalog is currently private, so authenticated GitHub access is required to the catalog and the plugin repositories it references.
+Adding a marketplace makes plugins discoverable; it does not install them. Start a new task after installation to load the skills. The central catalog and both plugin repositories are public: reading these Git sources does not require GitHub credentials. If you configure additional private sources, authenticate with an account that can read those repositories.
 
 **Compare revisions before switching sources.** A central-catalog install uses its selected, reviewed commit, not necessarily this repository's latest `main`. See the [central catalog's plugin list](https://github.com/pablopoo/codex-marketplace#plugins) for the currently selected version and commit SHA. Do not replace a newer local installation blindly or enable duplicate copies from both catalogs. Registering the central source does not migrate an existing installation.
 
@@ -49,7 +49,7 @@ An eligible workspace administrator can import the central catalog:
 
 1. Open the [Admin Console](https://admin.openai.com), choose the intended ChatGPT workspace, then **Plugins → Add → Import marketplace**.
 2. Set **Source** to `https://github.com/pablopoo/codex-marketplace`, leave **Path** empty, and set **Branch, tag, or commit** to `main`.
-3. Authorize a GitHub account that can read the catalog and both referenced private repositories, `pablopoo/gstack-generic` and `pablopoo/universal-lever`.
+3. Complete GitHub authorization if prompted by the workspace import flow. The catalog and referenced repositories, `pablopoo/gstack-generic` and `pablopoo/universal-lever`, are public; any private sources added later require read access for the importing account.
 4. Review all import results and configure plugin availability. Members can then find and install allowed plugins in their workspace directory.
 
 Import processes the catalog's valid plugins, not just GStack. Workspace permissions and plugin settings still apply. Following catalog `main` permits catalog updates, but does not bypass a plugin's pinned source commit. See [ChatGPT Help: importing and syncing marketplaces](https://help.openai.com/en/articles/20001504-importing-and-syncing-plugin-marketplaces-from-github).
@@ -154,11 +154,13 @@ Version 1.2.1 omits optional author contact metadata and adds a package check ag
 
 Version 1.2.2 adds complete installed license/notice coverage, generated modification notices and source-scope checks. It excludes two uncleared reference texts from the selected archive and replaces the installation screenshot embed with a link. See [the update record](methodology/updates/1.2.2.md).
 
+Version 1.2.3 updates installation guidance for the public central catalog and plugin repositories. Methodologies, legal notices and the selected upstream snapshot are unchanged.
+
 ## Attribution
 
 Derived from **[Garry Tan's gstack](https://github.com/garrytan/gstack)**. This is an independent methodology-only adaptation, not the original tool stack. Adaptation author: Pablo Poo.
 
-- Source plugin version: **1.2.2**; a marketplace may select an older reviewed revision.
+- Source plugin version: **1.2.3**; a marketplace may select an older reviewed revision.
 - Text-only upstream snapshot: **1.91.317.0**, commit [`9f44f188d117b5aa714c7698aa29bc5c7785cbfa`](https://github.com/garrytan/gstack/tree/9f44f188d117b5aa714c7698aa29bc5c7785cbfa).
 - Original notices and upstream licenses are preserved in [`gstack-skills/NOTICE.md`](gstack-skills/NOTICE.md) and [`gstack-skills/licenses/`](gstack-skills/licenses/).
 - Original contributions are MIT; third-party terms are not replaced by that grant. The installed package declares `MIT AND Apache-2.0` and includes complete licenses, notices and modification marks. See the [repository scope](NOTICE.md), [root license](LICENSE), and [installed notices](plugins/gstack-power-team/NOTICE.md).

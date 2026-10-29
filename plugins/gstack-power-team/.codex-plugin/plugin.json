@@ -1,6 +1,6 @@
 {
   "name": "gstack-power-team",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Repo-local Codex plugin that adapts gstack into local-development product and engineering methodologies.",
   "author": {
     "name": "Pablo Poo"
