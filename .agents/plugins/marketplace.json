@@ -1,0 +1,20 @@
+{
+  "name": "gstack-local",
+  "interface": {
+    "displayName": "Local GStack Plugins"
+  },
+  "plugins": [
+    {
+      "name": "gstack-power-team",
+      "source": {
+        "source": "local",
+        "path": "./plugins/gstack-power-team"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

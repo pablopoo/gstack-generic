@@ -1,0 +1,37 @@
+{
+  "name": "gstack-power-team",
+  "version": "1.2.2",
+  "description": "Repo-local Codex plugin that adapts gstack into local-development product and engineering methodologies.",
+  "author": {
+    "name": "Pablo Poo"
+  },
+  "license": "MIT AND Apache-2.0",
+  "keywords": [
+    "gstack",
+    "codex",
+    "methodology",
+    "local-development",
+    "code-review",
+    "qa"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "GStack Power Team",
+    "shortDescription": "GStack-inspired methods for product and engineering work.",
+    "longDescription": "A repo-local Codex plugin that packages technology-agnostic gstack-inspired methodologies for discovery, specification, planning, visual modeling, building, review, risk analysis, verification, local readiness, documentation, and retrospectives.",
+    "developerName": "Pablo Poo",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write",
+      "Review",
+      "Planning"
+    ],
+    "defaultPrompt": [
+      "Use product discovery to assess this idea.",
+      "Coordinate an integrated review of this plan.",
+      "Turn this intent into scope and observable acceptance criteria."
+    ],
+    "brandColor": "#111827"
+  }
+}

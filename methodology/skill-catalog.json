@@ -1,0 +1,747 @@
+{
+  "schema": 3,
+  "modification_notice": "Rewritten and consolidated by Pablo Poo. Retained third-party MIT and Apache-2.0 terms and attribution are documented in ../NOTICE.md.",
+  "skills": [
+    {
+      "id": "integrated-planning",
+      "title": "Integrated Plan Review",
+      "description": "Turn a proposed plan into an ordered, testable delivery plan.",
+      "phase": "planning",
+      "inputs": [
+        "proposed plan",
+        "desired outcome",
+        "constraints and affected areas"
+      ],
+      "method": [
+        "Test whether the plan addresses a real problem and outcome.",
+        "Challenge scope, wedge, assumptions, and exclusions.",
+        "Review experience and operator consequences where material. Failure feedback should distinguish rejection from partial or unknown effects, agree across human and automated signals where applicable, name safe recovery and retry limits, and provide stable identification and useful diagnostics without exposing sensitive information.",
+        "Amend the plan from product and experience findings, preserve accepted requirements, then review architecture, sequence, risk, and verification against that final plan.",
+        "Turn unresolved choices into owned decision gates. Keep independently selectable changes separate, preserve accepted commitments across alternatives, and do not treat a navigation choice as implementation approval.",
+        "Distinguish the accepted plan, proposed amendments, reviewer inputs, and completed reconciliation. Resume at the first incomplete obligation; artifact existence or acknowledgement alone does not establish review completion."
+      ],
+      "output": "An amended plan with ordered work, acceptance evidence, and open decisions.",
+      "boundary": "Planning and critique only.",
+      "capability": "strategic-judgment",
+      "sources": [
+        "autoplan",
+        "devex-review",
+        "plan-design-review",
+        "plan-devex-review",
+        "plan-tune"
+      ]
+    },
+    {
+      "id": "comparative-evaluation",
+      "title": "Comparative Evaluation",
+      "description": "Plan or assess a comparison when alternatives or before-and-after behavior need equivalent evidence.",
+      "phase": "review",
+      "inputs": [
+        "alternatives or baseline",
+        "decision criteria",
+        "representative conditions"
+      ],
+      "method": [
+        "Define observable success, alternatives, sampling, retry rules, and stopping criteria before measurement. Freeze these for the comparison; later changes start a separately labeled evaluation, not a revised verdict on the original run.",
+        "Separate development examples from held-out evidence and disclose prior exposure. Where identity could bias judgment, conceal irrelevant labels and assess observed behavior rather than self-reported compliance.",
+        "Before a costly or consequential evaluation, validate the measurement process with known positive and negative cases and a bounded pilot. Estimate total resource demand with uncertainty; scaling beyond authorized limits requires approval, not self-approval when the owner is unavailable.",
+        "Hold workload, environment, and coverage constant. For performance claims, verify that correct work actually completes inside the measured interval, separate diagnostic observation from timing, use realistic configurations, and check whether the gain is plausible given the limiting resource and end-to-end workload.",
+        "Separate measured change from inferred cause and correctness from incremental benefit. A baseline already at the measurement ceiling may leave improvement or equivalence unproven.",
+        "Reject missing baselines and non-equivalent coverage.",
+        "Retain every attempt, including failed and interrupted trials. Separate setup failures from evaluated outcomes rather than retrying until a favorable result appears; include failed work and cleanup in total cost comparisons.",
+        "Keep historical verdicts tied to their original criteria and contract version. Distinguish estimated, committed, measured, and unknown resource use; unknown cost is not zero. An interpretation failure is missing evidence, not grounds to change samples or thresholds.",
+        "Distinguish strict invariants from variable behavior: an invariant violation remains a failure; variable outcomes use the declared repeated-sample rule and disclose variation."
+      ],
+      "output": "A comparable evidence record and decision with confidence.",
+      "boundary": "Does not choose personnel or operational tooling.",
+      "capability": "bounded-evidence-work",
+      "sources": [
+        "benchmark",
+        "eval-plan"
+      ]
+    },
+    {
+      "id": "early-signal-observation",
+      "title": "Early Signal Observation",
+      "description": "Observe critical changed behavior for early failure signals.",
+      "phase": "verification",
+      "inputs": [
+        "changed behavior",
+        "critical flows",
+        "expected signals and thresholds"
+      ],
+      "method": [
+        "Select flows whose failure invalidates the change.",
+        "Declare the starting state, expected outcomes, observation window, interval, and stop conditions.",
+        "Observe declared conditions rather than treating silence as proof.",
+        "Separate absent signals, unavailable observation, and failures.",
+        "State when observation ended; do not imply continued monitoring after completion."
+      ],
+      "output": "A time-bounded observation record and follow-up recommendation.",
+      "boundary": "Observation only; not broad reliability proof.",
+      "capability": "bounded-evidence-work",
+      "sources": [
+        "canary"
+      ]
+    },
+    {
+      "id": "scope-control",
+      "title": "Scope Control",
+      "description": "Set or revise a safe boundary for broad, destructive, or expanding work.",
+      "phase": "planning",
+      "inputs": [
+        "requested change",
+        "owned surfaces",
+        "irreversible actions and dependencies"
+      ],
+      "method": [
+        "State allowed and prohibited surfaces.",
+        "Identify destructive actions, shared ownership, and recovery points.",
+        "Require evidence before widening a boundary.",
+        "Widen only the minimum needed and record new risk.",
+        "Stop when ownership or recovery is unclear. For resource-consuming work, define a proportionate limit, account for concurrent commitments and unknown use, and record a bounded stop or continuation point. Do not evade a limit by splitting or restarting work.",
+        "Define recovery to release only state acquired by this operation whose ownership still matches. Preserve pre-existing or replaced restrictions; ending a session is not evidence that persistent effects disappeared."
+      ],
+      "output": "An edit boundary with widening criteria and recovery posture.",
+      "boundary": "Does not authorize unrelated changes.",
+      "capability": "strategic-judgment",
+      "sources": [
+        "careful",
+        "freeze",
+        "guard",
+        "unfreeze"
+      ]
+    },
+    {
+      "id": "content-sampling",
+      "title": "Content Sampling",
+      "description": "Assess repeated content through a representative declared sample.",
+      "phase": "review",
+      "inputs": [
+        "content population",
+        "user tasks",
+        "sampling dimensions"
+      ],
+      "method": [
+        "Define population and coverage target first.",
+        "Include edge, empty, dense, stale, and high-consequence examples.",
+        "Judge usefulness and consistency against the user task.",
+        "Separate sampled defects from population-wide claims."
+      ],
+      "output": "A coverage-labeled sampling report with findings.",
+      "boundary": "Read-only; conclusions apply only to declared coverage.",
+      "capability": "bounded-evidence-work",
+      "sources": [
+        "content-sampling"
+      ]
+    },
+    {
+      "id": "context-stewardship",
+      "title": "Context Stewardship",
+      "description": "Preserve, restore, and refresh decision-relevant context without trusting stale notes as fact.",
+      "phase": "handoff",
+      "inputs": [
+        "current goal",
+        "prior decisions and evidence",
+        "current state"
+      ],
+      "method": [
+        "Separate durable decisions, assumptions, evidence, and pending work. Preserve project, task, and revision identity; the newest record is not necessarily the relevant one.",
+        "Mark claims with source, freshness, and invalidating conditions.",
+        "Reconcile stored context with current state after a pause; failed access means unknown, not empty or obsolete context. Before replaying a proposed state change, verify the actual target and prior effects; reading the procedure alone does not establish that repeating it is safe.",
+        "Preserve only context that changes future decisions.",
+        "State the next action and needed evidence. Preserve the exact scope and source of approvals across handoffs; stored acknowledgement is not authority for changed work.",
+        "Retain only decision-relevant context and omit secrets or unrelated personal information."
+      ],
+      "output": "A current context record with trusted facts, stale items, and next steps.",
+      "boundary": "Does not substitute notes for fresh verification.",
+      "capability": "bounded-evidence-work",
+      "sources": [
+        "context-refresh",
+        "context-restore",
+        "context-save",
+        "context-system-design",
+        "learn"
+      ]
+    },
+    {
+      "id": "risk-assessment",
+      "title": "Risk Assessment",
+      "description": "Assess security, safety, privacy, or misuse risk for a defined surface.",
+      "phase": "review",
+      "inputs": [
+        "assessed scope",
+        "assets and trust boundaries",
+        "actors and abuse paths"
+      ],
+      "method": [
+        "Define scope, boundaries, assets, actors, and abuse paths.",
+        "Separate supported findings from hypotheses and coverage gaps.",
+        "Calibrate severity from reachability, impact, likelihood, and controls; keep unknown reachability explicitly unknown.",
+        "Report complete, partial, or unassessed coverage.",
+        "Give each supported finding a repair or verification action. For a validated cause, inspect other in-scope entry points for the same pattern; establish each variant's reachability, impact, and evidence independently rather than copying the first finding's verdict.",
+        "Record freshness, confidence, and counterevidence separately from severity; fresh evidence is required to close an earlier finding.",
+        "Assess the actual representation crossing each relevant boundary, including transformations. Unavailable or incomplete checks remain unassessed; report limits without exposing sensitive content."
+      ],
+      "output": "A scope-labeled risk assessment with evidence and next actions.",
+      "boundary": "Read-only unless remediation is separately authorized.",
+      "capability": "strategic-judgment",
+      "sources": [
+        "cso"
+      ]
+    },
+    {
+      "id": "design-direction",
+      "title": "Design Direction",
+      "description": "Choose a coherent experience direction when design intent is unsettled.",
+      "phase": "design",
+      "inputs": [
+        "audience",
+        "use conditions",
+        "existing design decisions and assets"
+      ],
+      "method": [
+        "Establish primary user purpose and conditions of use.",
+        "Identify decisions to preserve and justified exceptions; distinguish researched facts from defaults and inferred preferences. Replacement of accepted decisions needs authorization.",
+        "Compare alternatives that differ on meaningful experience criteria using equivalent briefs. Attribute independent contributions and synthesize by criteria rather than vote count; material brief changes require renewed comparison.",
+        "Choose the direction best supporting the primary task.",
+        "Record reusable decisions and open tradeoffs."
+      ],
+      "output": "A chosen direction with rationale, constraints, and tradeoffs.",
+      "boundary": "Decides direction; does not critique an implementation.",
+      "capability": "strategic-judgment",
+      "sources": [
+        "design-consultation",
+        "design-variants"
+      ]
+    },
+    {
+      "id": "design-implementation-planning",
+      "title": "Design Implementation Planning",
+      "description": "Translate approved design direction into buildable interface decisions.",
+      "phase": "planning",
+      "inputs": [
+        "approved direction",
+        "existing interface structure",
+        "implementation constraints"
+      ],
+      "method": [
+        "Map direction to states, components, content, and interactions.",
+        "Identify decisions required before implementation.",
+        "Resolve shared structure and responsive behavior before polish.",
+        "Define representative states and observable acceptance criteria, including primary-action invalid, pending, failure, and success states where relevant. Separate source-backed claims from illustrative content; expose missing proof and unresolved dependencies without inventing them or authorizing external setup.",
+        "When motion is relevant, name the user purpose and appropriate motion budget. Preserve approved content and interactions without animation or with reduced motion; define starting, interrupted, resting, and repeating states where applicable."
+      ],
+      "output": "A buildable design plan with state coverage.",
+      "boundary": "Planning only.",
+      "capability": "strategic-judgment",
+      "sources": [
+        "design-implementation-plan",
+        "design-motion"
+      ]
+    },
+    {
+      "id": "design-critique",
+      "title": "Design Critique",
+      "description": "Evaluate an implemented experience for hierarchy, flow, feedback, consistency, and accessibility.",
+      "phase": "review",
+      "inputs": [
+        "implemented states",
+        "user journeys",
+        "documented design decisions"
+      ],
+      "method": [
+        "Inspect representative rendered states and label inference separately.",
+        "Trace tasks through transitions, feedback, errors, and recovery. Check applicable human and automated failure signals agree, recovery is safe, and diagnostic context is useful without disclosing secrets; unobserved error paths remain unknown.",
+        "Assess hierarchy, affordances, consistency, accessibility, and responsive behavior. Where motion exists, verify content remains usable without it and inspect transitions, interruption, rest, and repetition for lost state, overflow, or obscured information.",
+        "Locate user impact and consolidate duplicate observations. Distinguish real claims and supplied proof from illustrative data, and flag unresolved primary-action dependencies rather than inventing convincing content or silently changing approved decisions.",
+        "Preserve justified exceptions rather than applying generic rules."
+      ],
+      "output": "A prioritized finding set with evidence and affected states.",
+      "boundary": "Read-only critique.",
+      "capability": "implementation-and-validation",
+      "sources": [
+        "design-review",
+        "interface-walkthrough",
+        "interaction-review"
+      ]
+    },
+    {
+      "id": "product-discovery",
+      "title": "Product Discovery",
+      "description": "Test whether an idea addresses a specific urgent problem before committing scope.",
+      "phase": "discovery",
+      "inputs": [
+        "idea or opportunity",
+        "target audience",
+        "known evidence and constraints"
+      ],
+      "method": [
+        "Name the user, workaround, and observable problem cost.",
+        "Challenge urgency, reachability, differentiation, and the smallest wedge.",
+        "Separate evidence from aspiration; prefer interpretations supported by observed user needs over the most desirable answer.",
+        "Identify the assumption most likely to invalidate the idea.",
+        "Recommend proceed, reshape, defer, or stop.",
+        "Carry valid unresolved concerns across review rounds until evidence resolves or supersedes them. A failed later review or acknowledgement does not erase or fix an earlier concern."
+      ],
+      "output": "Problem framing, key assumptions, and a scoped next decision.",
+      "boundary": "Discovery judgment only; not a delivery plan.",
+      "capability": "strategic-judgment",
+      "sources": [
+        "discovery-challenge",
+        "office-hours"
+      ]
+    },
+    {
+      "id": "diagram-modeling",
+      "title": "Diagram Modeling",
+      "description": "Make architecture, state, ownership, or dependency relationships legible when prose is insufficient.",
+      "phase": "design",
+      "inputs": [
+        "question to answer",
+        "audience",
+        "entities and relationships"
+      ],
+      "method": [
+        "State the question and reader first.",
+        "Include only necessary entities, boundaries, and directed relationships.",
+        "Make ownership, state change, or dependency direction explicit.",
+        "Test labels, grouping, and edge cases against source facts.",
+        "Retain an editable source representation."
+      ],
+      "output": "A minimal diagram answering one declared question.",
+      "boundary": "Clarifies a model; does not establish missing facts.",
+      "capability": "implementation-and-validation",
+      "sources": [
+        "diagram-design"
+      ]
+    },
+    {
+      "id": "documentation-maintenance",
+      "title": "Documentation Maintenance",
+      "description": "Create, correct, or formalize documentation from current behavior and decisions.",
+      "phase": "handoff",
+      "inputs": [
+        "current behavior",
+        "reader intent",
+        "existing documentation and gaps"
+      ],
+      "method": [
+        "Identify the reader decision or repeatable task and discover affected documentation by responsibility, including nested sources and authored templates.",
+        "Verify behavioral claims against current evidence.",
+        "Separate confirmed procedure, conditional guidance, and uncertainty.",
+        "Keep the smallest usable structure. Identify the authoritative editable source; generated output alone does not establish ownership.",
+        "Recheck claims after related behavior changes."
+      ],
+      "output": "Current documentation or a repeatable procedure with boundaries.",
+      "boundary": "Does not invent behavior or replace product decisions. An audit-only request ends with findings and does not authorize documentation edits.",
+      "capability": "implementation-and-validation",
+      "sources": [
+        "document-generate",
+        "documentation-sync",
+        "local-runbook"
+      ]
+    },
+    {
+      "id": "health-assessment",
+      "title": "Health Assessment",
+      "description": "Assess correctness, test quality, maintainability, and known risk with explicit coverage.",
+      "phase": "verification",
+      "inputs": [
+        "requested dimensions",
+        "available checks",
+        "prior comparable results"
+      ],
+      "method": [
+        "Select checks representing requested dimensions and record what ran; distinguish checks that exist from checks that meaningfully protect the assessed behavior.",
+        "Preserve each check's actual result and complete diagnostic counts independently from shortened report output; successful formatting does not make a failed check pass or add a checked health dimension.",
+        "Report checked, skipped, unavailable, and capture-failed dimensions.",
+        "Assign no score to an empty run; show partial coverage.",
+        "Compare trends only across equivalent fresh coverage.",
+        "A capture or interpretation failure is an evidence gap, never a passing check; withhold aggregate scores when required evidence cannot be scored.",
+        "When assessing test quality, name each candidate's protected behavior, credible regression, independent value beyond existing coverage, and any implementation access introduced only for testing. Exact wording deserves a fixed check only when its identity is part of the consumed contract or demonstrated behavior, not merely because it appears in guidance.",
+        "For retirement or consolidation advice, inspect actual consumers, the reason the test exists, stronger remaining evidence, and a validation plan. An incomplete search is not proof of absence; retain independent contract checks even when static or slow.",
+        "Recommend retain, extend, rewrite, or retire with evidence and coverage limits. Optimize confidence rather than test count; recommendations do not authorize removal.",
+        "State what each check does not establish, including where simulated inputs or substitutes stand in for real behavior; this does not waive required verification. Structural checks, observed interactions, independent assessments, and completed workflows are not interchangeable. A final clean state alone cannot rule out transient unwanted effects. When observation reliability matters, seek evidence that it detects a known failure; this assessment does not authorize injecting failures or adding instrumentation."
+      ],
+      "output": "A read-only health report with coverage, results, and gaps.",
+      "boundary": "Read-only; no corrective edits.",
+      "capability": "bounded-evidence-work",
+      "sources": [
+        "health",
+        "test-audit"
+      ]
+    },
+    {
+      "id": "implementation-assessment",
+      "title": "Implementation Assessment",
+      "description": "Assess implementation choices or code-reuse opportunities against requirements and maintenance costs.",
+      "phase": "review",
+      "inputs": [
+        "implementation, change, or bounded reuse opportunity",
+        "requirements",
+        "constraints and alternatives"
+      ],
+      "method": [
+        "Restate requirements, invariants, and non-goals.",
+        "Trace affected boundaries, failure modes, and maintenance burden.",
+        "Compare alternatives only where they change the decision.",
+        "For reuse proposals, verify actual authored consumers and common behavior, preserve meaningful differences, and prefer a compatible existing capability. Similar appearance or imagined future consumers is not sufficient evidence.",
+        "Weigh reliability gains and total maintenance savings against migration, verification, coupling, and shared-failure risk. Exclude generated or third-party copies from duplication savings and check for overlapping work.",
+        "Distinguish defects from optional simplification.",
+        "State evidence that would reverse the recommendation."
+      ],
+      "output": "An independent recommendation with tradeoffs and confidence.",
+      "boundary": "Assessment only; does not modify implementation.",
+      "capability": "strategic-judgment",
+      "sources": [
+        "implementation-review",
+        "paired-review",
+        "deslop-shared-libs"
+      ]
+    },
+    {
+      "id": "root-cause-investigation",
+      "title": "Root Cause Investigation",
+      "description": "Establish the cause of unexpected behavior before choosing a repair.",
+      "phase": "discovery",
+      "inputs": [
+        "reported behavior",
+        "reproduction evidence",
+        "relevant state or history"
+      ],
+      "method": [
+        "Preserve the smallest reliable reproduction.",
+        "Build competing causal hypotheses from evidence, including the premise behind the requested remedy. When repeated attempts fail on the same premise, test that premise with a discriminating observation before varying the remedy again.",
+        "Choose checks that discriminate hypotheses and record negatives. For order-sensitive failures, preserve and minimize the triggering sequence without losing interactions, then locate leaked state and its owner. For concurrent failures, examine the suspected ordering with safe authorized probes and check the durable invariant, not merely absence of errors.",
+        "Trace the supported cause to the diverging boundary.",
+        "State confidence limits and next evidence when uncertain."
+      ],
+      "output": "A causal conclusion or bounded hypothesis set with evidence.",
+      "boundary": "Investigation only; repair is separate.",
+      "capability": "strategic-judgment",
+      "sources": [
+        "debug-challenge",
+        "investigate"
+      ]
+    },
+    {
+      "id": "defect-correction",
+      "title": "Defect Correction",
+      "description": "Reproduce, correct, and verify a defect within bounded implementation scope.",
+      "phase": "implementation",
+      "inputs": [
+        "reproduction",
+        "supported cause or repair hypothesis",
+        "affected behavior and constraints"
+      ],
+      "method": [
+        "Confirm the smallest reproducer against the intended contract, not recorded faulty behavior.",
+        "Choose the narrowest coherent correction.",
+        "Verify the reproducer and adjacent behavior.",
+        "Add or extend regression coverage when practical, showing failure for the original defect before repair and success afterward. If this comparison cannot run safely, report missing proof rather than a verified regression fix.",
+        "Separate invalid test setup from a product defect; preserve valid failing evidence rather than deleting it or changing expectations to accept the defect.",
+        "Report fixed behavior separately from remaining risk."
+      ],
+      "output": "A bounded correction with reproduction and regression evidence.",
+      "boundary": "Edits only authorized scope; uncertain causes return to investigation.",
+      "capability": "implementation-and-validation",
+      "sources": [
+        "defect-fix-loop",
+        "qa"
+      ]
+    },
+    {
+      "id": "scenario-evaluation",
+      "title": "Scenario Evaluation",
+      "description": "Evaluate an interaction or functional contract across representative states without changing the product.",
+      "phase": "verification",
+      "inputs": [
+        "critical interaction or functional contract",
+        "state preconditions",
+        "expected outcomes and failure modes"
+      ],
+      "method": [
+        "Select relevant surfaces from the requested behavior, including those without a visual interface. Map states, transitions, preconditions, expected outcomes, and failure modes before probing.",
+        "Establish isolation and ownership of test state and downstream effects; a local entry point does not prove its effects are local. Unknown ownership blocks affected probes.",
+        "Prepare only authorized realistic state needed for the scenario. Observe both the immediate result and durable effects; acceptance of work is not evidence of completion. A containment or setup failure does not prove the intended target path was exercised.",
+        "Probe documented input constraints independently where relevant: violate the selected rule while satisfying the others, so an earlier rejection cannot hide a missing guard. Inspect failure signals, safe recovery, and caller-appropriate diagnostics against the contract.",
+        "Cover relevant invalid input, denied access, cancellation, retry limits, duplicate effects, competing operations, and partial-failure recovery against the declared contract; do not invent guarantees. For state-changing behavior, map distinct state and owner-action combinations to expected durable results and their own evidence; a sibling case or success status alone does not prove preservation.",
+        "For exploratory work, record each observation, current input state, what was learned, and the next discriminating probe. Preserve prior evidence and mark proposed but unrun probes explicitly.",
+        "For regression comparison, verify the prior evidence matches the target and supports safe replay. Missing replay inputs block that comparison, not independent checks; changed inputs invalidate affected observations.",
+        "Report severity, reproduction, confidence, and coverage limits.",
+        "Keep evidence and coverage separate for different surfaces; do not blend incompatible scores. Distinguish passed, failed, blocked, not run, and inconclusive outcomes.",
+        "Separate report-only findings from authorized corrections; missing test infrastructure is a coverage gap, not permission to install or modify it."
+      ],
+      "output": "A scenario report with evidence, findings, and coverage.",
+      "boundary": "Product behavior is not changed by this assessment. Use only authorized local test state; report-only requests do not authorize corrective edits.",
+      "capability": "bounded-evidence-work",
+      "sources": [
+        "scenario-qa",
+        "qa-only",
+        "session-state-prep"
+      ]
+    },
+    {
+      "id": "readiness-triage",
+      "title": "Readiness Triage",
+      "description": "Order pending work by dependency, conflict, and evidence needed to become ready.",
+      "phase": "planning",
+      "inputs": [
+        "pending work",
+        "dependencies and ownership",
+        "readiness evidence"
+      ],
+      "method": [
+        "List each item with owner, dependency, conflict, and needed evidence.",
+        "Separate blocked work from unstarted work.",
+        "Order by unblock value and consequence of delay.",
+        "Mark stale, absent, or insufficient evidence.",
+        "Return the next actionable queue only."
+      ],
+      "output": "A prioritized readiness queue with blockers and next evidence.",
+      "boundary": "Read-only triage; does not modify pending work.",
+      "capability": "strategic-judgment",
+      "sources": [
+        "landing-report"
+      ]
+    },
+    {
+      "id": "integration-handoff",
+      "title": "Integration Handoff",
+      "description": "Establish whether completed local work is ready to transfer, integrate, or continue.",
+      "phase": "handoff",
+      "inputs": [
+        "completed changes",
+        "acceptance evidence",
+        "remaining risks and ownership"
+      ],
+      "method": [
+        "Confirm the exact work being handed over, its destination, accepted baseline, and concurrent changes affecting evidence; a changed target invalidates earlier readiness or approval where material. Disclose acceptance criteria changed by the candidate and reconcile them with authorized decisions rather than letting the work certify itself against altered requirements.",
+        "Verify acceptance evidence is current and label partial checks. Individually accepted contributions do not prove the combined result; check the actual integrated state and interactions before claiming integrated readiness.",
+        "Separate blockers from optional findings and deferred work.",
+        "Check that documentation relevant to changed behavior reflects the final work, including late corrections. Record missing or stale documentation as such rather than implying an audit completed.",
+        "Record changed surfaces, recovery, remaining risk, and next owner action. Preserve who approved what and under which conditions; carry approval forward only when those conditions still hold. A handoff label is not authority for further action.",
+        "Declare ready only when the stated gate is met."
+      ],
+      "output": "A readiness decision and handoff record with evidence.",
+      "boundary": "Produces a local readiness judgment and handoff. Publication, deployment, and further changes require their own authorized scope.",
+      "capability": "implementation-and-validation",
+      "sources": [
+        "local-integration",
+        "local-readiness-gate",
+        "local-handoff",
+        "captain"
+      ]
+    },
+    {
+      "id": "method-codification",
+      "title": "Method Codification",
+      "description": "Create or revise reusable guidance when repeated verified work exposes a missing decision rule or stale overlap.",
+      "phase": "learning",
+      "inputs": [
+        "repeated workflow evidence",
+        "existing guidance",
+        "failures and exceptions"
+      ],
+      "method": [
+        "Require repeated verified use before promotion.",
+        "Distinguish a missing judgment rule from a defect in the underlying process; extra prose is not a substitute for correcting that defect within authorized scope.",
+        "Extract criteria, entry conditions, exit evidence, and exceptions. Put the applicability trigger first; keep essential decisions together and conditional detail available only when needed.",
+        "Revise the existing rule rather than appending another account of the same idea. Separate reusable criteria from local policy and incident history.",
+        "Before reducing guidance, identify its consumers and representative outcome and safety cases. Test whether a fresh reader needs the proposed guidance; compare prior, revised, and absent guidance when useful. Preserve per-case behavior, disclose uncovered cases, and omit text that changes no decision rather than optimizing length alone.",
+        "Retire or merge stale overlapping guidance."
+      ],
+      "output": "A concise reusable method with applicability boundaries.",
+      "boundary": "Changes methodology only.",
+      "capability": "strategic-judgment",
+      "sources": [
+        "method-codification",
+        "methodology-refresh",
+        "write-skill"
+      ]
+    },
+    {
+      "id": "retrospection",
+      "title": "Retrospection",
+      "description": "Extract durable lessons from a completed work cycle using verified outcomes.",
+      "phase": "learning",
+      "inputs": [
+        "work period",
+        "verified outcomes",
+        "shortcuts and follow-up evidence"
+      ],
+      "method": [
+        "State reporting period and snapshot date.",
+        "Use verified outcomes rather than intentions.",
+        "Separate measured results, incomplete evidence, and follow-up.",
+        "Record owner, impact, and upgrade trigger for shortcuts. Revisit prior recommendations against current-period evidence and mark them addressed, partial, open, or unassessed; preserve unresolved follow-ups for the next cycle.",
+        "Preserve lessons that change future practice."
+      ],
+      "output": "A factual retrospective with owned follow-ups and lessons.",
+      "boundary": "Does not treat missing evidence as success.",
+      "capability": "strategic-judgment",
+      "sources": [
+        "retro",
+        "retrospective-challenge"
+      ]
+    },
+    {
+      "id": "evidence-extraction",
+      "title": "Evidence Extraction",
+      "description": "Extract decision-relevant facts from an artifact or observed surface.",
+      "phase": "discovery",
+      "inputs": [
+        "source artifact or surface",
+        "questions to answer",
+        "required fact structure"
+      ],
+      "method": [
+        "Define decisions the facts must support.",
+        "Capture location, observation date, and confidence.",
+        "Separate direct observation, source claim, and inference.",
+        "Retain ambiguity and conflicting evidence. Keep summaries and proposed checks no stronger than their supporting observations; an observed message does not prove the event it describes or establish recurrence.",
+        "Return unresolved questions instead of assumptions."
+      ],
+      "output": "A traceable fact record with uncertainty and open questions.",
+      "boundary": "Does not validate claims beyond inspected sources.",
+      "capability": "bounded-evidence-work",
+      "sources": [
+        "scrape"
+      ]
+    },
+    {
+      "id": "specification",
+      "title": "Specification",
+      "description": "Turn ambiguous intent into bounded scope, decisions, and testable acceptance criteria.",
+      "phase": "planning",
+      "inputs": [
+        "stated intent",
+        "current local state",
+        "constraints and stakeholders"
+      ],
+      "method": [
+        "Establish why work matters and verify current state.",
+        "Define behavior, exclusions, dependencies, and affected areas.",
+        "Write observable acceptance criteria and recovery posture. For planned checks, state the wrong outcome they should reject and what a pass would not establish, including simulated substitutes for real behavior.",
+        "Expose ambiguity, contradictions, and unresolved decisions.",
+        "Reject detail that changes no necessary decision."
+      ],
+      "output": "An executable specification with scope, acceptance evidence, and open decisions.",
+      "boundary": "Defines work; does not commit implementation.",
+      "capability": "strategic-judgment",
+      "sources": [
+        "specification"
+      ]
+    },
+    {
+      "id": "change-review",
+      "title": "Change Review",
+      "description": "Review current or aging local changes for defects, semantic drift, missing proof, and avoidable complexity.",
+      "phase": "review",
+      "inputs": [
+        "change set",
+        "requirements and invariants",
+        "relevant checks and states"
+      ],
+      "method": [
+        "Bind review to observed content and confirm it remains current. For aging work, reassess the original problem, proposed solution, and necessary assumptions against current behavior; mechanical compatibility, age, and sunk effort do not establish value. Recommend retain, rework, or retire with evidence, without implying authority to alter the work.",
+        "Trace risks, regressions, missing proof, and incomplete behavior from cause to impact. Test the premise that makes a risky change safe across indirect consumers and lifecycle boundaries, not only direct callers. When accepted inputs widen, inspect downstream handling and reachable sibling paths; distinguish cleared risks from unproven ones.",
+        "Collect and consolidate findings against the same candidate before any separately authorized correction. Confirm affected reviewers have finished or stopped before changing their inputs.",
+        "Consolidate project checks and manual observations; label unavailable evidence. Expiration of optional exploration does not waive required verification; report unfinished required checks explicitly.",
+        "Assess duplicate capability, needless abstraction, and dead flexibility. Reuse advice needs verified authored consumers, compatible behavior, and a benefit after integration costs; similarity alone is not a defect.",
+        "For changed tests, identify the protected contract, a credible regression, and why existing evidence is insufficient. After removal or renaming, check whether negative assertions now pass without exercising the intended contract. Prefer extending useful coverage over duplicating it; a weak test does not close a coverage gap.",
+        "Separate blockers from optional simplification; incomplete passes are not clean.",
+        "Re-review after fixes or concurrent edits affect relevant content, including supporting consumers and evidence. Reuse evidence only when relevant content, inputs, and conditions remain equivalent, not merely because a label is unchanged. Reuse prior advice decisions only while their scope and supporting facts still hold.",
+        "Apply review depth proportionate to consequence while retaining required checks. Interpret exceptions against the governing authority outside the candidate change; an exception does not erase the need to inspect affected content.",
+        "Keep approved, completed, verified, deferred, and unresolved actions distinct. Skipping a repair leaves its defect unresolved; a prior fix cannot suppress a recurring defect."
+      ],
+      "output": "A current finding set or clean result with coverage limits.",
+      "boundary": "Read-only unless fixes are separately authorized.",
+      "capability": "implementation-and-validation",
+      "sources": [
+        "review",
+        "modernize"
+      ]
+    },
+    {
+      "id": "product-challenge",
+      "title": "Product Challenge",
+      "description": "Challenge the value and scope of a proposed product direction before committing effort.",
+      "phase": "planning",
+      "inputs": [
+        "proposed direction",
+        "evidence of user need",
+        "constraints and alternative uses of effort"
+      ],
+      "method": [
+        "Identify the user outcome and assumption that makes the proposal valuable.",
+        "Compare the proposed scope with a smaller alternative and doing nothing. For process artifacts, name their actual reader, changed decision, smallest useful form, and revisit or retirement condition. Explicit user needs and credible preventive risks count; do not require a past incident or artificial implementation consumer.",
+        "Distinguish observed demand from stakeholder preference and aspiration.",
+        "Choose what to retain, defer, reshape, or reject, with evidence that would reverse the choice."
+      ],
+      "output": "A scope recommendation with tradeoffs, assumptions, and a decisive next check.",
+      "boundary": "Decision review only; preserve stated requirements unless a change is authorized.",
+      "capability": "strategic-judgment",
+      "sources": [
+        "plan-ceo-review",
+        "product-challenge-alt"
+      ]
+    },
+    {
+      "id": "architecture-planning",
+      "title": "Architecture Planning",
+      "description": "Resolve responsibilities, boundaries, sequencing, and failure behavior for a consequential change.",
+      "phase": "planning",
+      "inputs": [
+        "accepted scope and requirements",
+        "existing system responsibilities",
+        "constraints and acceptance evidence"
+      ],
+      "method": [
+        "Map responsibilities, data and control flow, dependencies, and ownership boundaries.",
+        "Compare plausible approaches against invariants, complexity, reversibility, and the cost of change. For a consequential new public boundary, include a structurally different responsibility or ownership split, not only refinements of the same shape; assess the coordination burden exposed to consumers.",
+        "Identify partial failure, recovery, compatibility, and transition states before sequencing implementation. For repeated or interrupted state changes, define how to reconcile prior effects before retrying; do not assume an unknown outcome means nothing happened.",
+        "When concurrent writers collide, first consider separating ownership or state. Where shared state is necessary, make the coordination responsibility explicit rather than relying on an unstated one-writer assumption.",
+        "Prefer existing capabilities when they meet the requirements without obscuring responsibility. Justify proposed sharing through compatible behavior and net reliability or maintenance benefit after integration and shared-failure risks; label planned consumers as assumptions.",
+        "Define the evidence needed at each risky boundary and identify unresolved decisions that block implementation. Each proposed test should name its protected behavior, a credible regression, and why existing coverage cannot provide the same assurance."
+      ],
+      "output": "A feasible architecture and implementation sequence with invariants, failure handling, and verification criteria.",
+      "boundary": "Planning only; use the current amended requirements and do not choose a technology on the user's behalf without need.",
+      "capability": "strategic-judgment",
+      "sources": [
+        "plan-eng-review"
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "id": "capy-integration",
+      "reason": "Host installation, admission, and runtime integration; not a standalone methodology. Generic authority and capability distinctions belong to existing coordination and scope methods."
+    },
+    {
+      "id": "ubicloud",
+      "reason": "Remote cloud verification and provider lifecycle operations are outside local-development scope. Generic resource limits and owned recovery are covered by scope control."
+    },
+    {
+      "id": "make-pdf",
+      "reason": "Operational artifact conversion, not a reusable decision methodology."
+    },
+    {
+      "id": "scaffolding-sync",
+      "reason": "Generated-state maintenance procedure, not a decision methodology."
+    },
+    {
+      "id": "instrumentation-cleanup",
+      "reason": "Temporary diagnostic cleanup operation, not a decision methodology."
+    },
+    {
+      "id": "benchmark-models",
+      "reason": "Operational ownership-allocation procedure, not a project methodology."
+    },
+    {
+      "id": "core",
+      "reason": "Routing is provided by the coordinator rather than a duplicate standalone methodology."
+    }
+  ]
+}
