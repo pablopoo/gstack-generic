@@ -46,7 +46,7 @@
         "Separate development examples from held-out evidence and disclose prior exposure. Where identity could bias judgment, conceal irrelevant labels and assess observed behavior rather than self-reported compliance.",
         "Before a costly or consequential evaluation, validate the measurement process with known positive and negative cases and a bounded pilot. Estimate total resource demand with uncertainty; scaling beyond authorized limits requires approval, not self-approval when the owner is unavailable.",
         "Hold workload, environment, and coverage constant. For performance claims, verify that correct work actually completes inside the measured interval, separate diagnostic observation from timing, use realistic configurations, and check whether the gain is plausible given the limiting resource and end-to-end workload.",
-        "Separate measured change from inferred cause and correctness from incremental benefit. A baseline already at the measurement ceiling may leave improvement or equivalence unproven.",
+        "Separate measured change from inferred cause and correctness from incremental benefit. A baseline already at the measurement ceiling may leave improvement or equivalence unproven. Opinions about likely behavior are hypotheses, not observed outcomes. When evaluating decision support, record predictions and confidence before revealing the independent reference decision; evaluation alone does not authorize transferring decision authority.",
         "Reject missing baselines and non-equivalent coverage.",
         "Retain every attempt, including failed and interrupted trials. Separate setup failures from evaluated outcomes rather than retrying until a favorable result appears; include failed work and cleanup in total cost comparisons.",
         "Keep historical verdicts tied to their original criteria and contract version. Distinguish estimated, committed, measured, and unknown resource use; unknown cost is not zero. An interpretation failure is missing evidence, not grounds to change samples or thresholds.",
@@ -99,7 +99,7 @@
         "Identify destructive actions, shared ownership, and recovery points.",
         "Require evidence before widening a boundary.",
         "Widen only the minimum needed and record new risk.",
-        "Stop when ownership or recovery is unclear. For resource-consuming work, define a proportionate limit, account for concurrent commitments and unknown use, and record a bounded stop or continuation point. Do not evade a limit by splitting or restarting work.",
+        "Stop when ownership or recovery is unclear. For resource-consuming work, define a proportionate limit, account for concurrent commitments and unknown use, and record a bounded stop or continuation point. Repeated attempts without new evidence call for reassessment, not automatic restart. Interrupt only owned work at a safe boundary; unknown observation is not proof that work is idle. Do not evade a limit by splitting or restarting work.",
         "Define recovery to release only state acquired by this operation whose ownership still matches. Preserve pre-existing or replaced restrictions; ending a session is not evidence that persistent effects disappeared."
       ],
       "output": "An edit boundary with widening criteria and recovery posture.",
@@ -109,6 +109,7 @@
         "careful",
         "freeze",
         "guard",
+        "runaway-stopper",
         "unfreeze"
       ]
     },
@@ -150,7 +151,7 @@
         "Mark claims with source, freshness, and invalidating conditions.",
         "Reconcile stored context with current state after a pause; failed access means unknown, not empty or obsolete context. Before replaying a proposed state change, verify the actual target and prior effects; reading the procedure alone does not establish that repeating it is safe.",
         "Preserve only context that changes future decisions.",
-        "State the next action and needed evidence. Preserve the exact scope and source of approvals across handoffs; stored acknowledgement is not authority for changed work.",
+        "State the next action and needed evidence. When replacing an active contributor, preserve partial effects, pending obligations, and the next owner; confirm responsibility transfers before retiring the old owner. Preserve the exact scope and source of approvals across handoffs; stored acknowledgement is not authority for changed work.",
         "Retain only decision-relevant context and omit secrets or unrelated personal information."
       ],
       "output": "A current context record with trusted facts, stale items, and next steps.",
@@ -440,7 +441,7 @@
         "Choose the narrowest coherent correction.",
         "Verify the reproducer and adjacent behavior.",
         "Add or extend regression coverage when practical, showing failure for the original defect before repair and success afterward. If this comparison cannot run safely, report missing proof rather than a verified regression fix.",
-        "Separate invalid test setup from a product defect; preserve valid failing evidence rather than deleting it or changing expectations to accept the defect.",
+        "Separate invalid test setup from a product defect; preserve valid failing evidence rather than deleting it or changing expectations to accept the defect. Attribute a failure to the prior state only with evidence from that state, not because the failing check was unchanged. Missing environmental prerequisites remain blockers, not permission to bypass checks or repair unrelated systems.",
         "Report fixed behavior separately from remaining risk."
       ],
       "output": "A bounded correction with reproduction and regression evidence.",
@@ -448,6 +449,7 @@
       "capability": "implementation-and-validation",
       "sources": [
         "defect-fix-loop",
+        "local-verification",
         "qa"
       ]
     },
@@ -518,7 +520,7 @@
       ],
       "method": [
         "Confirm the exact work being handed over, its destination, accepted baseline, and concurrent changes affecting evidence; a changed target invalidates earlier readiness or approval where material. Disclose acceptance criteria changed by the candidate and reconcile them with authorized decisions rather than letting the work certify itself against altered requirements.",
-        "Verify acceptance evidence is current and label partial checks. Individually accepted contributions do not prove the combined result; check the actual integrated state and interactions before claiming integrated readiness.",
+        "Verify acceptance evidence is current and label partial checks. Confirm that selected checks actually exercised the changed behavior; an empty run or unmapped change leaves a coverage gap, not a pass. Individually accepted contributions do not prove the combined result; check the actual integrated state and interactions before claiming integrated readiness.",
         "Separate blockers from optional findings and deferred work.",
         "Check that documentation relevant to changed behavior reflects the final work, including late corrections. Record missing or stale documentation as such rather than implying an audit completed.",
         "Record changed surfaces, recovery, remaining risk, and next owner action. Preserve who approved what and under which conditions; carry approval forward only when those conditions still hold. A handoff label is not authority for further action.",
@@ -549,7 +551,7 @@
         "Distinguish a missing judgment rule from a defect in the underlying process; extra prose is not a substitute for correcting that defect within authorized scope.",
         "Extract criteria, entry conditions, exit evidence, and exceptions. Put the applicability trigger first; keep essential decisions together and conditional detail available only when needed.",
         "Revise the existing rule rather than appending another account of the same idea. Separate reusable criteria from local policy and incident history.",
-        "Before reducing guidance, identify its consumers and representative outcome and safety cases. Test whether a fresh reader needs the proposed guidance; compare prior, revised, and absent guidance when useful. Preserve per-case behavior, disclose uncovered cases, and omit text that changes no decision rather than optimizing length alone.",
+        "Before reducing guidance, identify its consumers and representative outcome and safety cases. Test whether a fresh reader needs the proposed guidance; compare prior, revised, and absent guidance when useful. Judge observed decisions and results, not predicted compliance or preference for the wording. Preserve per-case behavior, disclose uncovered cases, and omit text that changes no decision rather than optimizing length alone.",
         "Retire or merge stale overlapping guidance."
       ],
       "output": "A concise reusable method with applicability boundaries.",
@@ -652,7 +654,7 @@
         "Assess duplicate capability, needless abstraction, and dead flexibility. Reuse advice needs verified authored consumers, compatible behavior, and a benefit after integration costs; similarity alone is not a defect.",
         "For changed tests, identify the protected contract, a credible regression, and why existing evidence is insufficient. After removal or renaming, check whether negative assertions now pass without exercising the intended contract. Prefer extending useful coverage over duplicating it; a weak test does not close a coverage gap.",
         "Separate blockers from optional simplification; incomplete passes are not clean.",
-        "Re-review after fixes or concurrent edits affect relevant content, including supporting consumers and evidence. Reuse evidence only when relevant content, inputs, and conditions remain equivalent, not merely because a label is unchanged. Reuse prior advice decisions only while their scope and supporting facts still hold.",
+        "Re-review after fixes or concurrent edits affect relevant content, including supporting consumers and evidence. Reuse evidence only when relevant content, inputs, and conditions remain equivalent, not merely because a label is unchanged. A changed selection or exclusion policy requires checking actual coverage equivalence; unchanged candidate content alone is insufficient. Reuse prior advice decisions only while their scope and supporting facts still hold.",
         "Apply review depth proportionate to consequence while retaining required checks. Interpret exceptions against the governing authority outside the candidate change; an exception does not erase the need to inspect affected content.",
         "Keep approved, completed, verified, deferred, and unresolved actions distinct. Skipping a repair leaves its defect unresolved; a prior fix cannot suppress a recurring defect."
       ],

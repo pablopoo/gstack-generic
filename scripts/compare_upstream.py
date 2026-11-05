@@ -4,6 +4,7 @@
 import argparse
 import json
 from pathlib import Path
+import re
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -76,6 +77,26 @@ def validate_decisions(report, decisions, catalog):
             raise ValueError("Adapted or covered changes require a valid method")
 
 
+def public_review(report, decisions, catalog):
+    """Publish only portable review fields, never arbitrary reviewer metadata."""
+    validate_decisions(report, decisions, catalog)
+    result = {key: report[key] for key in ("from_commit", "to_commit", "upstream_version") if key in report}
+    by_path = {row["path"]: row for row in decisions["changes"]}
+    result["changes"] = []
+    local_path = re.compile(r"/(?:tmp|home|Users|private|var/tmp)/|(?<![A-Za-z0-9])[A-Za-z]:[\\/]|file://|~/")
+    for change in report["changes"]:
+        row = {key: change[key] for key in ("path", "status", "before", "after", "legacy_id", "prior_exclusion") if key in change}
+        decision = by_path[change["path"]]
+        row.update({key: decision[key] for key in ("method", "decision", "reason") if key in decision})
+        result["changes"].append(row)
+    # Free text still needs human privacy review; this blocks common local paths.
+    values = [value for key, value in result.items() if key != "changes"]
+    values.extend(value for row in result["changes"] for value in row.values())
+    if any(isinstance(value, str) and local_path.search(value) for value in values):
+        raise ValueError("Public review contains a local path; replace it with portable provenance")
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("checkout", type=Path, help="Local upstream checkout; committed text only")
@@ -88,9 +109,8 @@ def main():
     report = compare(baseline, current, mapping, catalog)
     if args.accept:
         decisions = json.loads(args.accept.read_text())
-        validate_decisions(report, decisions, catalog)
         # Preserve the rationale beside the exact baseline, never overwrite skills.
-        current["review"] = decisions
+        current["review"] = public_review(report, decisions, catalog)
         LOCK.write_text(json.dumps(current, indent=2) + "\n")
         print(f"Baseline advanced to {current['commit']}; curated skills were not modified")
     else:

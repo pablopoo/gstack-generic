@@ -6,8 +6,8 @@ do not waive the original licenses. Original contributions are MIT; retained
 third-party portions keep their applicable MIT and Apache-2.0 terms. The package
 license expression is `MIT AND Apache-2.0` (combined obligations, not dual licensing).
 
-Source: [garrytan/gstack, version 1.91.317.0, commit
-9f44f188d117b5aa714c7698aa29bc5c7785cbfa](https://github.com/garrytan/gstack/tree/9f44f188d117b5aa714c7698aa29bc5c7785cbfa).
+Source: [garrytan/gstack, version 1.96.0.0, commit
+4c400661d93503d0dfe5e6bdbde6a6f8455a6cc3](https://github.com/garrytan/gstack/tree/4c400661d93503d0dfe5e6bdbde6a6f8455a6cc3).
 The full upstream notice is retained verbatim in [NOTICE.upstream.md](NOTICE.upstream.md).
 Its implementation descriptions are historical source context, not installed
 capabilities or instructions to obtain tools.

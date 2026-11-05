@@ -1,6 +1,6 @@
 # GStack Generic
 
-A curated methodology-only adaptation of Garry Tan's gstack for local development. Version 1.2.3 contains 27 distinct methods and one coordinator, consolidated from the previous 60 skills. Methods define inputs, decisions, evidence, results, and scope; they do not prescribe tools or executable commands.
+A curated methodology-only adaptation of Garry Tan's gstack for local development. Version 1.3.0 contains 27 distinct methods and one coordinator, consolidated from the previous 60 skills. Methods define inputs, decisions, evidence, results, and scope; they do not prescribe tools or executable commands.
 
 The installed bundle lives in `plugins/gstack-power-team`. The authoring catalog, upstream tracking, selection rationale, and maintenance utilities live outside that bundle.
 
@@ -156,12 +156,14 @@ Version 1.2.2 adds complete installed license/notice coverage, generated modific
 
 Version 1.2.3 updates installation guidance for the public central catalog and plugin repositories. Methodologies, legal notices and the selected upstream snapshot are unchanged.
 
+Version 1.3.0 integrates verification coverage, bounded repetitive work, ownership-preserving handoffs, outcome-based guidance assessment and review-selection freshness. The method count and tool-independent local scope remain unchanged. See [the update record](methodology/updates/1.3.0.md).
+
 ## Attribution
 
 Derived from **[Garry Tan's gstack](https://github.com/garrytan/gstack)**. This is an independent methodology-only adaptation, not the original tool stack. Adaptation author: Pablo Poo.
 
-- Source plugin version: **1.2.3**; a marketplace may select an older reviewed revision.
-- Text-only upstream snapshot: **1.91.317.0**, commit [`9f44f188d117b5aa714c7698aa29bc5c7785cbfa`](https://github.com/garrytan/gstack/tree/9f44f188d117b5aa714c7698aa29bc5c7785cbfa).
+- Source plugin version: **1.3.0**; a marketplace may select an older reviewed revision.
+- Text-only upstream snapshot: **1.96.0.0**, commit [`4c400661d93503d0dfe5e6bdbde6a6f8455a6cc3`](https://github.com/garrytan/gstack/tree/4c400661d93503d0dfe5e6bdbde6a6f8455a6cc3).
 - Original notices and upstream licenses are preserved in [`gstack-skills/NOTICE.md`](gstack-skills/NOTICE.md) and [`gstack-skills/licenses/`](gstack-skills/licenses/).
 - Original contributions are MIT; third-party terms are not replaced by that grant. The installed package declares `MIT AND Apache-2.0` and includes complete licenses, notices and modification marks. See the [repository scope](NOTICE.md), [root license](LICENSE), and [installed notices](plugins/gstack-power-team/NOTICE.md).
 

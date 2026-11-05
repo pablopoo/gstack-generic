@@ -21,7 +21,7 @@ Use available evidence; identify missing information only when it changes the de
 - Mark claims with source, freshness, and invalidating conditions.
 - Reconcile stored context with current state after a pause; failed access means unknown, not empty or obsolete context. Before replaying a proposed state change, verify the actual target and prior effects; reading the procedure alone does not establish that repeating it is safe.
 - Preserve only context that changes future decisions.
-- State the next action and needed evidence. Preserve the exact scope and source of approvals across handoffs; stored acknowledgement is not authority for changed work.
+- State the next action and needed evidence. When replacing an active contributor, preserve partial effects, pending obligations, and the next owner; confirm responsibility transfers before retiring the old owner. Preserve the exact scope and source of approvals across handoffs; stored acknowledgement is not authority for changed work.
 - Retain only decision-relevant context and omit secrets or unrelated personal information.
 
 ## Result

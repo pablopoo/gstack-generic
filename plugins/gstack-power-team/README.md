@@ -1,6 +1,6 @@
 # GStack Power Team
 
-Version 1.2.3 is a curated collection of 27 development methodologies and one coordinator derived from Garry Tan's gstack. Each method defines its inputs, decision criteria, result, and scope. Methods can be used independently or coordinated through their actual dependencies.
+Version 1.3.0 is a curated collection of 27 development methodologies and one coordinator derived from Garry Tan's gstack. Each method defines its inputs, decision criteria, result, and scope. Methods can be used independently or coordinated through their actual dependencies.
 
 The installed bundle contains methodological text and packaging metadata. It prescribes no commands, named tools, frameworks, platforms, models, installations, or deployment procedures. Local development through readiness and handoff remains the boundary.
 
@@ -8,7 +8,7 @@ The method index selects by desired outcome. The process map preserves dependenc
 
 This revision strengthens fair comparisons, aging-change assessment, purposeful motion, approval provenance, integrated evidence, and concise guidance within the existing methods. Older skill names are not retained as executable aliases. Source history, migration decisions, update guidance, and authoring utilities live in the source repository outside the installed bundle.
 
-Adapted from Garry Tan's gstack, upstream 1.91.317.0 at 9f44f188d117b5aa714c7698aa29bc5c7785cbfa. Adaptation author: Pablo Poo.
+Adapted from Garry Tan's gstack, upstream 1.96.0.0 at 4c400661d93503d0dfe5e6bdbde6a6f8455a6cc3. Adaptation author: Pablo Poo.
 
 ## Install
 
@@ -49,6 +49,6 @@ The [process map](references/process-map.md) preserves dependencies, not a compu
 
 ## Source and verification
 
-The [source repository](https://github.com/pablopoo/gstack-generic) contains the authoring catalog, update process, selected text archive, tests and fuller diagrams. None is needed as a runtime dependency of these skills. Repository checks verify generation, package boundaries and upstream-review bookkeeping; they do not guarantee agent compliance on every host. Version 1.2.3 clarifies installation from public sources; methodology content and legal notices are unchanged.
+The [source repository](https://github.com/pablopoo/gstack-generic) contains the authoring catalog, update process, selected text archive, tests and fuller diagrams. None is needed as a runtime dependency of these skills. Repository checks verify generation, package boundaries and upstream-review bookkeeping; they do not guarantee agent compliance on every host. Version 1.3.0 clarifies verification coverage, repetitive-work limits, ownership transfer, outcome-based guidance assessment and review-selection freshness without adding methods or operational dependencies.
 
-Derived from [garrytan/gstack](https://github.com/garrytan/gstack/tree/9f44f188d117b5aa714c7698aa29bc5c7785cbfa). Original contributions and MIT-derived text retain MIT terms; Apache-derived guidance retains Apache-2.0 obligations. The package expression is `MIT AND Apache-2.0`, not an MIT-only relicense. See [LICENSE](LICENSE), [NOTICE.md](NOTICE.md) and [licenses/](licenses/) for the self-contained attribution, scope and complete terms. Named sources in legal notices are provenance, not tool dependencies.
+Derived from [garrytan/gstack](https://github.com/garrytan/gstack/tree/4c400661d93503d0dfe5e6bdbde6a6f8455a6cc3). Original contributions and MIT-derived text retain MIT terms; Apache-derived guidance retains Apache-2.0 obligations. The package expression is `MIT AND Apache-2.0`, not an MIT-only relicense. See [LICENSE](LICENSE), [NOTICE.md](NOTICE.md) and [licenses/](licenses/) for the self-contained attribution, scope and complete terms. Named sources in legal notices are provenance, not tool dependencies.

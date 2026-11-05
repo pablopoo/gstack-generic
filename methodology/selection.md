@@ -18,6 +18,7 @@ Initial reduction: gstack adaptation 0.10.0, based on upstream 1.87.4.0. Later s
 | context-system-design | Retained or consolidated | context-stewardship |
 | learn | Retained or consolidated | context-stewardship |
 | defect-fix-loop | Retained or consolidated | defect-correction |
+| local-verification | Retained or consolidated | defect-correction |
 | qa | Retained or consolidated | defect-correction |
 | design-review | Retained or consolidated | design-critique |
 | interface-walkthrough | Retained or consolidated | design-critique |
@@ -65,6 +66,7 @@ Initial reduction: gstack adaptation 0.10.0, based on upstream 1.87.4.0. Later s
 | careful | Retained or consolidated | scope-control |
 | freeze | Retained or consolidated | scope-control |
 | guard | Retained or consolidated | scope-control |
+| runaway-stopper | Retained or consolidated | scope-control |
 | unfreeze | Retained or consolidated | scope-control |
 | specification | Retained or consolidated | specification |
 | capy-integration | Excluded | Host installation, admission, and runtime integration; not a standalone methodology. Generic authority and capability distinctions belong to existing coordination and scope methods. |

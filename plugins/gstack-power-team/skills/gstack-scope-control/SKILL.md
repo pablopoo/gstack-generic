@@ -21,7 +21,7 @@ Use available evidence; identify missing information only when it changes the de
 - Identify destructive actions, shared ownership, and recovery points.
 - Require evidence before widening a boundary.
 - Widen only the minimum needed and record new risk.
-- Stop when ownership or recovery is unclear. For resource-consuming work, define a proportionate limit, account for concurrent commitments and unknown use, and record a bounded stop or continuation point. Do not evade a limit by splitting or restarting work.
+- Stop when ownership or recovery is unclear. For resource-consuming work, define a proportionate limit, account for concurrent commitments and unknown use, and record a bounded stop or continuation point. Repeated attempts without new evidence call for reassessment, not automatic restart. Interrupt only owned work at a safe boundary; unknown observation is not proof that work is idle. Do not evade a limit by splitting or restarting work.
 - Define recovery to release only state acquired by this operation whose ownership still matches. Preserve pre-existing or replaced restrictions; ending a session is not evidence that persistent effects disappeared.
 
 ## Result

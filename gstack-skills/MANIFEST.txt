@@ -52,6 +52,7 @@ gstack-skills/qa-only/SKILL.md
 gstack-skills/qa/SKILL.md
 gstack-skills/retro/SKILL.md
 gstack-skills/review/SKILL.md
+gstack-skills/runaway-stopper/SKILL.md
 gstack-skills/scrape/SKILL.md
 gstack-skills/setup-browser-cookies/SKILL.md
 gstack-skills/setup-deploy/SKILL.md
@@ -63,4 +64,5 @@ gstack-skills/sync-gbrain/SKILL.md
 gstack-skills/test-audit/SKILL.md
 gstack-skills/ubicloud/SKILL.md
 gstack-skills/unfreeze/SKILL.md
+gstack-skills/verify/SKILL.md
 gstack-skills/write-skill/SKILL.md

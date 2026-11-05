@@ -101,6 +101,42 @@ class UpdateWorkflowTests(unittest.TestCase):
         report = self.decision_example()
         module("compare_upstream").validate_decisions(report, copy.deepcopy(report), {"skills": [{"id": "review"}]})
 
+    def test_public_review_drops_session_metadata_but_keeps_decisions(self):
+        report = self.decision_example()
+        report["upstream_version"] = "2"
+        decisions = copy.deepcopy(report)
+        decisions["review_metadata"] = {"session": "/tmp/private-review.json"}
+        decisions["changes"][0]["evidence"] = {"repository": "/home/user/private"}
+        original = copy.deepcopy(decisions)
+        result = module("compare_upstream").public_review(report, decisions, {"skills": [{"id": "review"}]})
+        self.assertEqual(result, report)
+        self.assertEqual(decisions, original)
+
+    def test_public_review_rejects_local_paths_in_published_text(self):
+        for path in ("/tmp/session.json", "/home/user/project", "/Users/user/project", "C:\\Users\\user\\project", "file:///private/session", "~/private/notes"):
+            with self.subTest(path=path):
+                report = self.decision_example()
+                decisions = copy.deepcopy(report)
+                decisions["changes"][0]["reason"] = "Reviewed in " + path
+                with self.assertRaises(ValueError):
+                    module("compare_upstream").public_review(report, decisions, {"skills": [{"id": "review"}]})
+
+    def test_public_review_preserves_validation_and_public_provenance(self):
+        report = self.decision_example()
+        decisions = copy.deepcopy(report)
+        decisions["changes"][0]["reason"] = "Reviewed upstream https://github.com/garrytan/gstack; focused sections only."
+        m = module("compare_upstream")
+        result = m.public_review(report, decisions, {"skills": [{"id": "review"}]})
+        self.assertEqual(result["changes"][0]["reason"], decisions["changes"][0]["reason"])
+        decisions["changes"][0]["after"] = "stale"
+        with self.assertRaises(ValueError):
+            m.public_review(report, decisions, {"skills": [{"id": "review"}]})
+
+    def test_committed_review_contains_only_public_fields(self):
+        review = json.loads((ROOT / "methodology/upstream-lock.json").read_text())["review"]
+        catalog = json.loads((ROOT / "methodology/skill-catalog.json").read_text())
+        self.assertEqual(module("compare_upstream").public_review(review, review, catalog), review)
+
     def test_missing_pending_or_stale_decision_rejected(self):
         m = module("compare_upstream")
         report = self.decision_example()

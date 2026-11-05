@@ -55,6 +55,7 @@
   "qa/SKILL.md": "qa",
   "retro/SKILL.md": "retro",
   "review/SKILL.md": "review",
+  "runaway-stopper/SKILL.md": "runaway-stopper",
   "scrape/SKILL.md": "scrape",
   "setup-browser-cookies/SKILL.md": "session-state-prep",
   "setup-deploy/SKILL.md": "local-runbook",
@@ -66,5 +67,6 @@
   "test-audit/SKILL.md": "test-audit",
   "ubicloud/SKILL.md": "ubicloud",
   "unfreeze/SKILL.md": "unfreeze",
+  "verify/SKILL.md": "local-verification",
   "write-skill/SKILL.md": "write-skill"
 }

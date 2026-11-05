@@ -18,7 +18,7 @@ Use available evidence; identify missing information only when it changes the de
 ## Method
 
 - Confirm the exact work being handed over, its destination, accepted baseline, and concurrent changes affecting evidence; a changed target invalidates earlier readiness or approval where material. Disclose acceptance criteria changed by the candidate and reconcile them with authorized decisions rather than letting the work certify itself against altered requirements.
-- Verify acceptance evidence is current and label partial checks. Individually accepted contributions do not prove the combined result; check the actual integrated state and interactions before claiming integrated readiness.
+- Verify acceptance evidence is current and label partial checks. Confirm that selected checks actually exercised the changed behavior; an empty run or unmapped change leaves a coverage gap, not a pass. Individually accepted contributions do not prove the combined result; check the actual integrated state and interactions before claiming integrated readiness.
 - Separate blockers from optional findings and deferred work.
 - Check that documentation relevant to changed behavior reflects the final work, including late corrections. Record missing or stale documentation as such rather than implying an audit completed.
 - Record changed surfaces, recovery, remaining risk, and next owner action. Preserve who approved what and under which conditions; carry approval forward only when those conditions still hold. A handoff label is not authority for further action.

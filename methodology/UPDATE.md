@@ -17,6 +17,25 @@ This is a maintainer workflow, outside the installed plugin. The plugin contains
 3. Read relevant differences at the reported commits, including changed sections and templates. Added paths are always surfaced, even if they have no existing mapping. Shared documents may affect several methods; inspect each affected method rather than relying only on the suggested owner.
 4. Give every changed path a `decision` of `adapt`, `already-covered`, or `exclude`, plus a concrete `reason`. For the first two, set `method` to a current catalog ID. A previously excluded source must still be examined when it changes. For a multi-method change, record the additional method IDs and rationale in the reason.
 
+## Publication Privacy
+
+The accepted lock is public source, not a private working report. Keep local
+checkout paths, temporary report locations, session notes, personal contacts,
+credentials and recovery material outside repository history. Refer to upstream
+by its public repository, relative path, commit and blob identities instead.
+Preserve substantive decisions, rationale and inspection limits, not agent-session
+bookkeeping. A source path named AGENTS.md identifies upstream text; it does not
+authorize publishing this project's local instructions.
+
+The acceptance helper publishes only explicit comparison/decision fields and
+rejects common local filesystem paths in retained text. Extra reviewer metadata
+is deliberately not copied. This is not a complete secret detector: inspect the
+actual staged content and commit identity before committing, including free-text
+reasons and new files. Keep public release notes distinct from internal notes.
+If private material entered an unpushed commit, remove it and amend that commit
+before publication; a later deletion commit alone leaves it in reachable history.
+Never rewrite published history without explicit authorization.
+
 ## Selection Rules
 
 Retain an idea when it changes a reusable decision, evidence standard, dependency, or completion criterion. It must remain useful without a named product, command, file format, platform, model, setup procedure, or runtime integration.

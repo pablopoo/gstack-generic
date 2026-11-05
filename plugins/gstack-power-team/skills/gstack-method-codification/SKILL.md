@@ -21,7 +21,7 @@ Use available evidence; identify missing information only when it changes the de
 - Distinguish a missing judgment rule from a defect in the underlying process; extra prose is not a substitute for correcting that defect within authorized scope.
 - Extract criteria, entry conditions, exit evidence, and exceptions. Put the applicability trigger first; keep essential decisions together and conditional detail available only when needed.
 - Revise the existing rule rather than appending another account of the same idea. Separate reusable criteria from local policy and incident history.
-- Before reducing guidance, identify its consumers and representative outcome and safety cases. Test whether a fresh reader needs the proposed guidance; compare prior, revised, and absent guidance when useful. Preserve per-case behavior, disclose uncovered cases, and omit text that changes no decision rather than optimizing length alone.
+- Before reducing guidance, identify its consumers and representative outcome and safety cases. Test whether a fresh reader needs the proposed guidance; compare prior, revised, and absent guidance when useful. Judge observed decisions and results, not predicted compliance or preference for the wording. Preserve per-case behavior, disclose uncovered cases, and omit text that changes no decision rather than optimizing length alone.
 - Retire or merge stale overlapping guidance.
 
 ## Result

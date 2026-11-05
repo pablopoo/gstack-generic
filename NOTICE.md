@@ -14,8 +14,8 @@ and its installable plugin are mixed-license distributions, not MIT-only works.
 | `gstack-skills/` | Selected literal upstream text, licenses and notices; not installed. The source files listed in MANIFEST.txt remain byte-identical to their pinned originals. Original MIT and relevant Apache-2.0 terms are preserved, not replaced by the root MIT license. |
 
 The fixed comparison source is [garrytan/gstack at
-9f44f188d117b5aa714c7698aa29bc5c7785cbfa](https://github.com/garrytan/gstack/tree/9f44f188d117b5aa714c7698aa29bc5c7785cbfa),
-upstream version 1.91.317.0. Its complete [NOTICE](gstack-skills/NOTICE.md),
+4c400661d93503d0dfe5e6bdbde6a6f8455a6cc3](https://github.com/garrytan/gstack/tree/4c400661d93503d0dfe5e6bdbde6a6f8455a6cc3),
+upstream version 1.96.0.0. Its complete [NOTICE](gstack-skills/NOTICE.md),
 [MIT license](gstack-skills/LICENSE), and [third-party license texts](gstack-skills/licenses/)
 are retained. Upstream's descriptions of files outside the selected snapshot
 are provenance, not claims that those implementations are included here.

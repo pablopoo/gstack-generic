@@ -21,7 +21,7 @@ Use available evidence; identify missing information only when it changes the de
 - Choose the narrowest coherent correction.
 - Verify the reproducer and adjacent behavior.
 - Add or extend regression coverage when practical, showing failure for the original defect before repair and success afterward. If this comparison cannot run safely, report missing proof rather than a verified regression fix.
-- Separate invalid test setup from a product defect; preserve valid failing evidence rather than deleting it or changing expectations to accept the defect.
+- Separate invalid test setup from a product defect; preserve valid failing evidence rather than deleting it or changing expectations to accept the defect. Attribute a failure to the prior state only with evidence from that state, not because the failing check was unchanged. Missing environmental prerequisites remain blockers, not permission to bypass checks or repair unrelated systems.
 - Report fixed behavior separately from remaining risk.
 
 ## Result
